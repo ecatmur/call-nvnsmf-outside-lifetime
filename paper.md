@@ -112,6 +112,7 @@ Amend 6.7.3 \[basic.life] paragraph 7 as follows
 
 <quote>
 ... The program has undefined behavior if:
+
 * the glvalue is used to access the object, or
 * the glvalue is used to call a <del>non-static</del><ins>virtual</ins> member function of the object
 <ins> or a non-static member function of a virtual base class</ins>,
