@@ -8,11 +8,11 @@ Status: D
 Group: WG21
 URL:
 !Source: <a href="https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/paper.md">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/paper.md</a>
-!Current: <a href="https://htmlpreview.github.io/?https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/r0/D####R0.html">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/r0/D####R0.html</a>
+!Current: <a href="https://htmlpreview.github.io/?https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/r0/D####R0.html">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/D####R0.html</a>
 Editor: Ed Catmur, ed@catmur.uk
 Markup Shorthands: markdown yes, biblio yes, markup yes
 Abstract:
-    Calling non-virtual non-static member functions on objects whose lifetime has ended or has not yet begin is undefined behavior.
+    Calling non-virtual non-static member functions on objects whose lifetime has ended or has not yet begin has undefined behavior.
     We propose to relax this restriction.
 Date: 2022-12-25
 </pre>
@@ -29,12 +29,12 @@ Date: 2022-12-25
 }
 </pre>
 
-## 1. Changelog
+# 1. Changelog
 
 : v0
 :: Initial submission
 
-## 2. Motivation and Scope
+# 2. Motivation and Scope
 
 What can we do with a `std::array` that is outside its lifetime?
 We can't find out its size by calling `size()` on it, since 6.7.3 <a href="https://wg21.link/basic.life#7.2">\[basic.life]/7.2</a>
@@ -95,7 +95,7 @@ At runtime (outside constant evaluation), the sanitizers do not detect this as a
 
 Given that this rule appears to exist merely for the sake of it, and compilers have trouble applying it, we feel justified in calling for its removal.
 
-## 3. Impact On the Standard
+# 3. Impact On the Standard
 
 This is a pure language extension.
 
@@ -106,7 +106,7 @@ if LWG wishes, it would be possible to tighten this to disallow calling non-stat
 However, we caution against introducing an inconsistency between member and non-member functions, or alternatively
 disallowing seemingly innocuous code such as `std::addressof(u.a)` on an object outside its lifetime.
 
-## 4. Technical specification
+# 4. Technical specification
 
 Amend 6.7.3 \[basic.life] paragraph 7 as follows:
 
@@ -124,4 +124,4 @@ including its explicit object parameter, if any, can also result in undefined be
 
 Update `__cpp_constexpr` to the year and month of adoption.
 
-## 5. Acknowledgements
+# 5. Acknowledgements
