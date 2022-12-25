@@ -1,6 +1,6 @@
 <pre class='metadata'>
 Title: Calling non-virtual non-static member functions outside lifetime
-Shortname: D####
+Shortname: DXXXX
 Revision: 0
 !Draft Revision: 0
 Audience: EWG, LWG
@@ -8,7 +8,7 @@ Status: D
 Group: WG21
 URL:
 !Source: <a href="https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/paper.md">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/paper.md</a>
-!Current: <a href="https://htmlpreview.github.io/?https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/D####R0.html">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/D####R0.html</a>
+!Current: <a href="https://htmlpreview.github.io/?https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/DXXXXR0.html">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/DXXXXR0.html</a>
 Editor: Ed Catmur, ed@catmur.uk
 Markup Shorthands: markdown yes, biblio yes, markup yes
 Abstract:
