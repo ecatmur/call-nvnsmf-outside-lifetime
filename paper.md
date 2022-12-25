@@ -108,7 +108,7 @@ disallowing seemingly innocuous code such as `std::addressof(u.a)` on an object 
 
 ## 4. Technical specification
 
-Amend 6.7.3 \[basic.life] paragraph 7 as follows
+Amend 6.7.3 \[basic.life] paragraph 7 as follows:
 
 <quote>
 ... The program has undefined behavior if:
