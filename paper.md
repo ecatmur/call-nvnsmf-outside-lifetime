@@ -113,7 +113,10 @@ Amend 6.7.3 \[basic.life] paragraph 7 as follows
 <quote>
 ... The program has undefined behavior if:
 * the glvalue is used to access the object, or
-* the glvalue is used to call a <del>non-static</del><ins>virtual</ins> member function of the object<ins> or a non-static member function of a virtual base class</ins>, or
+* the glvalue is used to call a <del>non-static</del><ins>virtual</ins> member function of the object
+<ins> or a non-static member function of a virtual base class</ins>,
+<ins>[Footnote: Evaluation of a non-virtual member function, or initialization of its parameters,
+including its explicit object parameter, if any, can also result in undefined behavior. --end footnote]</ins> or
 * the glvalue is bound to a reference to a virtual base class (\[dcl.init.ref]), or
 * the glvalue is used as the operand of a dynamic_­cast (\[expr.dynamic.cast]) or as the operand of typeid.
 </quote>
