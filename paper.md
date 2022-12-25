@@ -8,7 +8,7 @@ Status: D
 Group: WG21
 URL:
 !Source: <a href="https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/paper.md">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/paper.md</a>
-!Current: <a href="https://htmlpreview.github.io/?https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/r0/D####R0.html">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/D####R0.html</a>
+!Current: <a href="https://htmlpreview.github.io/?https://github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/D####R0.html">github.com/ecatmur/call-nvnsmf-outside-lifetime/blob/main/D####R0.html</a>
 Editor: Ed Catmur, ed@catmur.uk
 Markup Shorthands: markdown yes, biblio yes, markup yes
 Abstract:
