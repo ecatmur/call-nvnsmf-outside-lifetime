@@ -29,15 +29,15 @@ Date: 2022-12-25
 }
 </pre>
 
-# 1. Changelog
+# Changelog
 
 : v0
 :: Initial submission
 
-# 2. Motivation and Scope
+# Motivation and Scope
 
 What can we do with a `std::array` that is outside its lifetime?
-We can't find out its size by calling `size()` on it, since 6.7.3 <a href="https://wg21.link/basic.life#7.2">\[basic.life]/7.2</a>
+We can't find out its size by calling `size()` on it, since 6.7.3 <a href="https://wg21.link/basic.life#7.2">[basic.life]/7.2</a>
 makes such a member function call undefined, even though `std::array::size()` has no reason to access the object;
 so we have to use `decltype` and `std::tuple_size` or some other convoluted solution:
 
@@ -99,20 +99,20 @@ At runtime (outside constant evaluation), the sanitizers do not detect this as a
 
 Given that this rule appears to exist merely for the sake of it, and compilers have trouble applying it, we feel justified in calling for its removal.
 
-# 3. Impact On the Standard
+# Impact On the Standard
 
 This is a pure language extension.
 
-16.4.5.10 <a href="https://wg21.link/res.on.objects">\[res.on.objects]</a> states (somewhat redundantly) that access to library
+16.4.5.10 <a href="https://wg21.link/res.on.objects">[res.on.objects]</a> states (somewhat redundantly) that access to library
 objects outside their lifetime has undefined behavior unless otherwise specified.
 This would continue to hold, as would calls to *virtual* member functions and to member functions of virtual bases;
 if LWG wishes, it would be possible to tighten this to disallow calling non-static member functions on *library* objects.
 However, we caution against introducing an inconsistency between member and non-member functions, or alternatively
 disallowing seemingly innocuous code such as `std::addressof(u.a)` on an object outside its lifetime.
 
-# 4. Technical specification
+# Technical specification
 
-Amend 6.7.3 \[basic.life] paragraph 7 as follows:
+Amend 6.7.3 [basic.life] paragraph 7 as follows:
 
 <quote>
 ... The program has undefined behavior if:
@@ -122,10 +122,10 @@ Amend 6.7.3 \[basic.life] paragraph 7 as follows:
 <ins> or a non-static member function of a virtual base class</ins>,
 <ins>[Footnote: Evaluation of a non-virtual member function, or initialization of its parameters,
 including its explicit object parameter, if any, can also result in undefined behavior. --end footnote]</ins> or
-* the glvalue is bound to a reference to a virtual base class (\[dcl.init.ref]), or
-* the glvalue is used as the operand of a dynamic_­cast (\[expr.dynamic.cast]) or as the operand of typeid.
+* the glvalue is bound to a reference to a virtual base class ([dcl.init.ref]), or
+* the glvalue is used as the operand of a dynamic_­cast ([expr.dynamic.cast]) or as the operand of typeid.
 </quote>
 
 Update `__cpp_constexpr` to the year and month of adoption.
 
-# 5. Acknowledgements
+# Acknowledgements

@@ -2118,11 +2118,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <nav data-fill-with="table-of-contents" id="toc">
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
-    <li><a href="#1-changelog"><span class="secno">1</span> <span class="content">1. Changelog</span></a>
-    <li><a href="#2-motivation-and-scope"><span class="secno">2</span> <span class="content">2. Motivation and Scope</span></a>
-    <li><a href="#3-impact-on-the-standard"><span class="secno">3</span> <span class="content">3. Impact On the Standard</span></a>
-    <li><a href="#4-technical-specification"><span class="secno">4</span> <span class="content">4. Technical specification</span></a>
-    <li><a href="#5-acknowledgements"><span class="secno">5</span> <span class="content">5. Acknowledgements</span></a>
+    <li><a href="#changelog"><span class="secno">1</span> <span class="content">Changelog</span></a>
+    <li><a href="#motivation-and-scope"><span class="secno">2</span> <span class="content">Motivation and Scope</span></a>
+    <li><a href="#impact-on-the-standard"><span class="secno">3</span> <span class="content">Impact On the Standard</span></a>
+    <li><a href="#technical-specification"><span class="secno">4</span> <span class="content">Technical specification</span></a>
+    <li><a href="#acknowledgements"><span class="secno">5</span> <span class="content">Acknowledgements</span></a>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
@@ -2131,15 +2131,15 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </ol>
   </nav>
   <main>
-   <h2 class="heading settled" data-level="1" id="1-changelog"><span class="secno">1. </span><span class="content">1. Changelog</span><a class="self-link" href="#1-changelog"></a></h2>
+   <h2 class="heading settled" data-level="1" id="changelog"><span class="secno">1. </span><span class="content">Changelog</span><a class="self-link" href="#changelog"></a></h2>
    <dl>
     <dt data-md>v0
     <dd data-md>
      <p>Initial submission</p>
    </dl>
-   <h2 class="heading settled" data-level="2" id="2-motivation-and-scope"><span class="secno">2. </span><span class="content">2. Motivation and Scope</span><a class="self-link" href="#2-motivation-and-scope"></a></h2>
+   <h2 class="heading settled" data-level="2" id="motivation-and-scope"><span class="secno">2. </span><span class="content">Motivation and Scope</span><a class="self-link" href="#motivation-and-scope"></a></h2>
    <p>What can we do with a <code class="highlight"><c- n>std</c-><c- o>::</c-><c- n>array</c-></code> that is outside its lifetime?
-We can’t find out its size by calling <code class="highlight"><c- n>size</c-><c- p>()</c-></code> on it, since 6.7.3 <a href="https://wg21.link/basic.life#7.2">\[basic.life]/7.2</a> makes such a member function call undefined, even though <code class="highlight"><c- n>std</c-><c- o>::</c-><c- n>array</c-><c- o>::</c-><c- n>size</c-><c- p>()</c-></code> has no reason to access the object;
+We can’t find out its size by calling <code class="highlight"><c- n>size</c-><c- p>()</c-></code> on it, since 6.7.3 <a href="https://wg21.link/basic.life#7.2">[basic.life]/7.2</a> makes such a member function call undefined, even though <code class="highlight"><c- n>std</c-><c- o>::</c-><c- n>array</c-><c- o>::</c-><c- n>size</c-><c- p>()</c-></code> has no reason to access the object;
 so we have to use <code class="highlight"><c- k>decltype</c-></code> and <code class="highlight"><c- n>std</c-><c- o>::</c-><c- n>tuple_size</c-></code> or some other convoluted solution:</p>
 <pre class="language-c++ highlight"><c- k>union</c-> <c- p>{</c-> <c- b>int</c-> <c- n>i</c-><c- p>;</c-> <c- n>std</c-><c- o>::</c-><c- n>array</c-><c- o>&lt;</c-><c- b>int</c-><c- p>,</c-> <c- mi>1</c-><c- o>></c-> <c- n>a</c-><c- p>;</c-> <c- p>}</c-> <c- n>u</c-> <c- o>=</c-> <c- p>{.</c-><c- n>i</c-> <c- o>=</c-> <c- mi>0</c-><c- p>};</c->
 <c- n>std</c-><c- o>::</c-><c- b>size_t</c-> <c- n>z1</c-> <c- o>=</c-> <c- n>u</c-><c- p>.</c-><c- n>a</c-><c- p>.</c-><c- n>size</c-><c- p>();</c->  <c- c1>// UB</c->
@@ -2183,16 +2183,16 @@ gcc accepts #1 and rejects #2, again with fragility.
 MSVC accepts both.</p>
    <p>At runtime (outside constant evaluation), the sanitizers do not detect this as a reportable error.</p>
    <p>Given that this rule appears to exist merely for the sake of it, and compilers have trouble applying it, we feel justified in calling for its removal.</p>
-   <h2 class="heading settled" data-level="3" id="3-impact-on-the-standard"><span class="secno">3. </span><span class="content">3. Impact On the Standard</span><a class="self-link" href="#3-impact-on-the-standard"></a></h2>
+   <h2 class="heading settled" data-level="3" id="impact-on-the-standard"><span class="secno">3. </span><span class="content">Impact On the Standard</span><a class="self-link" href="#impact-on-the-standard"></a></h2>
    <p>This is a pure language extension.</p>
-   <p>16.4.5.10 <a href="https://wg21.link/res.on.objects">\[res.on.objects]</a> states (somewhat redundantly) that access to library
+   <p>16.4.5.10 <a href="https://wg21.link/res.on.objects">[res.on.objects]</a> states (somewhat redundantly) that access to library
 objects outside their lifetime has undefined behavior unless otherwise specified.
 This would continue to hold, as would calls to <em>virtual</em> member functions and to member functions of virtual bases;
 if LWG wishes, it would be possible to tighten this to disallow calling non-static member functions on <em>library</em> objects.
 However, we caution against introducing an inconsistency between member and non-member functions, or alternatively
 disallowing seemingly innocuous code such as <code class="highlight"><c- n>std</c-><c- o>::</c-><c- n>addressof</c-><c- p>(</c-><c- n>u</c-><c- p>.</c-><c- n>a</c-><c- p>)</c-></code> on an object outside its lifetime.</p>
-   <h2 class="heading settled" data-level="4" id="4-technical-specification"><span class="secno">4. </span><span class="content">4. Technical specification</span><a class="self-link" href="#4-technical-specification"></a></h2>
-   <p>Amend 6.7.3 \[basic.life] paragraph 7 as follows:</p>
+   <h2 class="heading settled" data-level="4" id="technical-specification"><span class="secno">4. </span><span class="content">Technical specification</span><a class="self-link" href="#technical-specification"></a></h2>
+   <p>Amend 6.7.3 [basic.life] paragraph 7 as follows:</p>
    <quote>
      ... The program has undefined behavior if: 
     <ul>
@@ -2211,12 +2211,12 @@ disallowing seemingly innocuous code such as <code class="highlight"><c- n>std</
 including its explicit object parameter, if any, can also result in undefined behavior. --end footnote]</ins>
        or 
      <li data-md>
-      <p>the glvalue is bound to a reference to a virtual base class (\[dcl.init.ref]), or</p>
+      <p>the glvalue is bound to a reference to a virtual base class ([dcl.init.ref]), or</p>
      <li data-md>
-      <p>the glvalue is used as the operand of a dynamic_­cast (\[expr.dynamic.cast]) or as the operand of typeid.</p>
+      <p>the glvalue is used as the operand of a dynamic_­cast ([expr.dynamic.cast]) or as the operand of typeid.</p>
     </ul>
     <p>Update <code class="highlight"><c- n>__cpp_constexpr</c-></code> to the year and month of adoption.</p>
-    <h2 class="heading settled" data-level="5" id="5-acknowledgements"><span class="secno">5. </span><span class="content">5. Acknowledgements</span><a class="self-link" href="#5-acknowledgements"></a></h2>
+    <h2 class="heading settled" data-level="5" id="acknowledgements"><span class="secno">5. </span><span class="content">Acknowledgements</span><a class="self-link" href="#acknowledgements"></a></h2>
    </quote>
   </main>
 <script>
