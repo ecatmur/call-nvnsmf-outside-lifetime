@@ -45,8 +45,12 @@ so we have to use `decltype` and `std::tuple_size` or some other convoluted solu
 union { int i; std::array<int, 1> a; } u = {.i = 0};
 std::size_t z1 = u.a.size();  // UB
 std::size_t z2 = std::tuple_size_v<decltype(u.a)>;  // OK
-std::size_t z3 = decltype([] { return std::integral_constant<std::size_t, u.a.size()>(); }())::value;  // OK
+std::size_t z3 = decltype([](decltype(u.a) x) {
+    return std::integral_constant<std::size_t, x.size()>();
+}(std::declval<decltype(u.a)>()))::value;  // OK
 ```
+
+Note: `z3` will be simplified slightly - not much - by [[P2280R4]].
 
 Similarly, we can't form a glvalue or pointer to one of its elements via `operator[]`, but there's nothing to prevent us calling `std::get`:
 
